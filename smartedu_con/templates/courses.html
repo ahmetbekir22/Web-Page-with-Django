@@ -1,0 +1,78 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+	
+	<div class="all-title-box">
+		<div class="container text-center">
+			<h1>Cases</span></h1>
+		</div>
+	</div>
+	
+    <div id="overviews" class="section wb">
+        <div class="container">
+            <div class="row"> 
+                <div class="col-lg-9 blog-post-single">
+					
+                    <div class="row"> 
+						{% for course in courses %}
+                        <div class="col-lg-6 col-md-6 col-12 mb-4">
+                            <div class="course-item">
+                                <div class="image-blog">
+                                    <img src="{{course.image.url}}" alt="" class="img-fluid">
+                                </div>
+                                <div class="course-br">
+                                    <div class="course-title">
+                                        <h2><a href="{% url 'course_detail' course.category.slug course.id %}" title="">{{course.name}}</a></h2>
+                                    </div>
+                                    <div class="course-desc">
+                                        <p>{{course.description | truncatechars:140}}</p>
+                                    </div>
+                                </div>
+                                <div class="course-meta-bot">
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i> {{course.date|date:"d M Y"}}</li>
+                                        <li><i class="fa fa-book" aria-hidden="true"></i> {{course.teacher}}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- end col -->
+						{% endfor %}
+                    </div><!-- end row -->
+				
+					
+                </div><!-- end col -->
+				<div class="col-lg-3 col-12 right-single">
+					<div class="widget-search">
+						<div class="site-search-area">
+							<form method="get" id="site-searchform" action="{% url 'search' %}">
+								<div>
+									<input class="input-text form-control" name="search" placeholder="Search keywords..." type="text">
+									<input id="searchsubmit" value="Search" type="submit">
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="widget-categories">
+						<h3 class="widget-title">Categories</h3>
+						<ul>
+							{% for category in categories %}
+								<li><a href="{% url 'courses_by_category' category.slug %}">{{category.name}}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="widget-tags">
+						<h3 class="widget-title">Search Tags</h3>
+						<ul class="tags">
+							{% for tag in tags %}
+								<li><a href="{% url 'courses_by_tag' tag.slug %}">{% if tag.slug in request.path %} <b>{{tag.name}}</b>{% else %}{{tag.name}}{% endif %}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+	{% endblock %}
+

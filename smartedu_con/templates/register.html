@@ -1,0 +1,144 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="modal fade show" id="logreg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header tit-up">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title">Register</h4>
+          </div>
+          <div class="modal-body customer-box">
+              <!-- Tab panes -->
+              <div class="tab-content">
+                  <div class="tab-pane active" id="Registration">
+                      <form method="POST" role="form" class="form-horizontal">
+                        {% csrf_token %}
+                          <div class="form-group">
+                              <div class="col-sm-12">
+                                  {{form.first_name}}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-sm-12">
+                                {{form.last_name}}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-sm-12">
+                                {{form.username}}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-sm-12">
+                                {{form.email}}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-sm-12">
+                              {{form.password1}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                              {{form.password2}}
+                            </div>
+                        </div>
+
+                        {% if form.errors  %}
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger">
+                                        <strong>{{ error}}</strong>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% endif %}
+
+
+                          <div class="row">							
+                              <div class="col-sm-10">
+                                <input type="submit" value="Register" class="btn btn-light btn-radius btn-brd grd1">
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="carouselExampleControls" class="carousel slide bs-slider box-slider" data-ride="carousel" data-pause="hover" data-interval="false" >
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleControls" data-slide-to="1"></li>
+        <li data-target="#carouselExampleControls" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+        <div class="carousel-item active">
+            <div id="home" class="first-section" style="background-image:url(' {% static "images/arabuluculuk1.png" %}');">
+                <div class="dtab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-right">
+                                <div class="big-tagline">
+                                    <h2><strong>PeacePort </strong> Mediation Platform</h2>
+                                    <p class="lead">Start the process online and continue it online. </p>
+                                </div>
+                            </div>
+                        </div><!-- end row -->            
+                    </div><!-- end container -->
+                </div>
+            </div><!-- end section -->
+        </div>
+        <div class="carousel-item">
+            <div id="home" class="first-section" style="background-image:url(' {% static "images/arkaplan2.jpg" %}');">
+                <div class="dtab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-left">
+                                <div class="big-tagline">
+                                    <h2 data-animation="animated zoomInRight">PeacePort <strong>Mediation Platform</strong></h2>
+                                    <p class="lead" data-animation="animated fadeInLeft">Choose your mediator and get started. </p>
+                                </div>
+                            </div>
+                        </div><!-- end row -->            
+                    </div><!-- end container -->
+                </div>
+            </div><!-- end section -->
+        </div>
+        <div class="carousel-item">
+            <div id="home" class="first-section" style="background-image:url(' {% static "images/arabulucumasa.jpg" %}');">
+                <div class="dtab">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 text-center">
+                                <div class="big-tagline">
+                                    <h2 data-animation="animated zoomInRight"><strong>PeacePort</strong> Mediation Platform</h2>
+                                    <p class="lead" data-animation="animated fadeInLeft">Score your mediator and more.</p>
+                                </div>
+                            </div>
+                        </div><!-- end row -->            
+                    </div><!-- end container -->
+                </div>
+            </div><!-- end section -->
+        </div>
+        <!-- Left Control -->
+        <a class="new-effect carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="fa fa-angle-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <!-- Right Control -->
+        <a class="new-effect carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="fa fa-angle-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+{% endblock %}
